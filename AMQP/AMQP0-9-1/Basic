@@ -1,0 +1,7 @@
+The Basic class implements the messaging capabilities described in this specification. It supports these main semantics:
+
+    - Sending messages from client to server, which happens asynchronously (Publish)
+    - Starting and stopping consumers (Consume, Cancel)
+    - Sending messages from server to client, which happens asynchronously (Deliver, Return)
+    - Acknowledging messages (Ack, Reject)
+    - Taking messages off the message queue synchronously (Get).

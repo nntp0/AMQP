@@ -1,0 +1,27 @@
+https://www.amqp.org/product/architecture
+
+The AMQP Network protocol defines:
+
+    - A peer to peer protocol; though normally in AMQP one peer is playing the role of a client application and the other peer is playing the role of trusted message routing and delivery service, or broker.
+
+    - How to connect to services, including a method for failing over connections to alternative services.
+
+    - A mechanism to enable peers to discover one another's capabilities
+
+    - Comprehensive security mechanisms, including SSL and Kerberos for seamless end-to-end confidentiality
+
+    - How to multiplex a TCP/IP connection in order that multiple conversations may happen over one TCP/IP connection. This greatly simplifies firewall management.
+
+    - How to address a source of messages with the network peer, and to specify which messages are of interest.
+
+    - The lifecycle of a message through fetching, processing, and acknowledgement. AMQP makes it very clear when responsibility for a message is transferred from one peer to another thereby enhancing reliability.
+
+    - How to enhance performance, if desired, by pre-fetching messages across the network ready for the client to process without delay.
+
+    - A way of processing batches of messages within a transaction.
+
+    - A mechanism to allow a complete message transfer from login to logout in one network packet for lightweight applications.
+
+    - Very capable flow control, which enables consumers of messages to slow producers to a manageable speed, and which enable different workloads to proceed in parallel at different rates over one connection.
+
+    - Mechanisms for resuming message transfers when connections are lost and re-established; for example in the event of service failover or intermittent connectivity.

@@ -1,0 +1,12 @@
+Main Entities
+
+The AMQ model takes the approach of smaller, modular pieces that can be combinedd in more diverse and robust ways. It starts by dividing these tasks into distinct roles:
+
+    - The exchange, which accepts messages from producers and routes them message queues.
+    - The message queue, which stores messages and forwards them to consumer applications.
+
+There is a clear interface between exchange and message queue, called a "binding", which we will come to later. AMQP provides runtime-programmable semantics, throuhg two main aspects:
+
+    1. The ability at runtime via the protocol to create arbitrary exchange and message queue types (some are defined in the standard, but others can be added as server extensions).
+
+    2. The ability at runtime via the protocol to wire exchanges and message queues together to create any required message-processing system.

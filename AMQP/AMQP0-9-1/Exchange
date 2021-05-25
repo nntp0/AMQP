@@ -1,0 +1,11 @@
+An exchange accepts messages from a producer application and routes these to message queues according to pre-arranged criteria. These criteria are called "bindings". 
+
+Exchanges are matching and routing engines. That is, they inspect messages and using their binding tables, decide how to forward these messages to message queues or other exchanges. 
+
+Exchanges never store messages.
+
+The term "exchange" is used to mean both a class of algorithm, and the instance of such an algorithm. More properly, "exchange type" and "exchange instance".
+
+Applications that use AMQP can additionally create their own exchange instances. Exchange types are named so that applications which create their own exchanges can tell the server what exchange type to use.
+
+Exchanges can do more than route messages. They can act as intelligent agents that work from within the server, accepting messages and producing message as needed.

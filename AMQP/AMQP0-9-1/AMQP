@@ -1,0 +1,24 @@
+The AMQP protocol is a binary protocol with modern features:
+it is 
+- multi-channel
+- negotiated
+- asynchronous
+- secure
+- portable
+- neutral
+- efficient
+
+AMQP is usefully split into two layers:
+    Functional Layer:
+        - Basic
+        - Transactions
+        - Exchanges
+        - Message queues
+
+    Transport Layer:
+        - Framing
+        - Content
+        - Data representation
+        - Error handling
+        - Heart-beating
+        - Channels

@@ -1,0 +1,18 @@
+A binding is the relationship between an exchange and a message queue that tells the exchange how to route messages. Bindings are constructed from commands from the client application (the one owning and using the message queue) to an exchange.
+
+Typecial use cases:
+    - shared queues
+        default exchange & default binding supports this; publishers publish message with a routing key which is the message queue name.
+
+    - reply queues
+        temporary, with server-assigned names. They are also usually private, read by a single consumer. Apart from these particularities, reply queues use the smae matching criteria as standard queues, so we can also use default exchange.
+
+    - Pub-Sub Subscription queues
+        subscription refers to at least two different concepts: the set of criteria that match messages and the temporary queue that holds mathed messages.
+
+        AMQP separates the work into bindings and message queues. (There is no AMQP entity called "subscription")
+
+        - holds messages for a single consumer
+        - collects messages from multiple sources, through a set of bindings that match topics, message fields, or content in different ways.
+
+        The key difference between a subscription queue and a named or reply queue is that the subscription queue name is irrelevant for the purposes of routing, and routing is done on abstracted matching criteria rather than a 1-to-1 matching of the routing key field.

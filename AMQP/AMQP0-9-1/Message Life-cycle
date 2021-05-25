@@ -1,0 +1,15 @@
+An AMQP message consists of a set of properties plus opaque content.
+
+A new "message" is created by a producer application using an AMQP client API. The producer places "content" in the message and perhaps sets some message "properties". The producer labels the message with "routing information", which is superficially similar to an address, but almost any scheme can be created. The producer then sends the message to an "exchange" on the server.
+
+When the message arrives at the server, the exchange (usually) routes the message to a set of message "queues" which also exist on the server. If the message is unroutable, the exchange may drop it silently or return it to the producer. The producer chooses how unroutable messages are treated.
+
+A single message can exist on many message queues. The server can handle this in different ways, by copying the message, by using reference counting, etc. This does not affect interoperability. However, when a message is routed to multiple message queues, it is identical on each message queue. There is no unique identifier that distinguishes the various copies.
+
+When a message arrives in a message queue, the message queue tries immediately to pass it to a consumer application via AMQP. If this is not possible, the message queue  stores the message (in memory or on disk as requested by the producer) and waits for a consumer to be ready. If there are no consumers, the message queue may return the message to the producer via AMQP (again, if the producer asked for this).
+
+When the message queue can deliver the message to a consumer, it removes the message from its internal buffers. This can happen immediately, or after the consumer has acknowledged that it has successfully processed the message. The consumer chooses how and when messages are "acknowledged". The consumer can also reject a message (a negative acknowledgement).
+
+Producer messages and consumer acknowledgements are grouped into "transactions". When an application plays both roles, which is often, it does a mix of work: sending messages and sending acknowledgements, and then committing or rolling back the transaction.
+
+Message deliveries from the server to the consumer are not transacted; it is sufficient to transact the acknowledgements to these messages.

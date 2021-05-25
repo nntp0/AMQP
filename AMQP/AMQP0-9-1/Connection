@@ -1,0 +1,26 @@
+The Connection class is designed to be long-lasting, and can carry multiple channels. 
+
+The connection life-cycle is this:
+
+    - The client opens a TCP/IP connection to the server and sends a protocol header. This is the only data the client sends that is not formatted as a method.
+
+    - The server responds with its protocol version and other properties, including a list of the security mechanisms that it supports (the Start method).
+    - The client selects a security mechanism (Start OK).
+
+    - The server starts the authentication process, which uses the SASL challenge-response moddl. It sends the client a challenge (Secure).
+    - The client sends an authentication response (Secure-Ok).
+
+    - The server repeats the challenge or moves to negotiation, sending a set of parameters such as maximum frame size (Tune).
+    - The client accepts or lowers these parameters (Tune-Ok).
+
+    - The client formally opens the connection and selects a virtual host (Open).
+    - The server confirms that the virtual host is a valid choice (Open-Ok).
+
+    - The client now uses the connection as desired.
+
+    - One peer (client or server) ends the connection (Close).
+    - The other peer hand-shakes the connection end (Close-Ok).
+
+    - The server and the client close their socket connection.
+
+There is no hand-shaking for errors on connections that are not fully open. Following successful protocol header negotiation, which is defined in detail later, and priorto sending or receiving Open or Open-Ok, a peer that detects an error MUST close the socket without sending any further data.

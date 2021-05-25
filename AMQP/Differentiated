@@ -1,0 +1,23 @@
+1. Interoperable
+
+    ALL AMQP clients interoperate with ALL AMQP servers. Diverse programming languages can communicate easily. Legacy message brokers can be retrofitted to remove proprietary protocols from your network. Messaging can be enabled as a cloud service. A straightforwar solution for business messaging and middleware integration, amde to satisfy real needs.
+
+2. Reliable
+
+    Capable of eliminating the communication gaps and slowdowns between different platforms, critical systems and application components both within enterprise and out to external systems and organizations.
+
+3. Unified
+
+    Provide a code set of messaging patterns via a single manageable protocol.
+
+4. Complete
+
+    JMS provides an API for application protocol, and is reliant on Java. AMQP provides a wire level transport for applications using that API. AMQP is broadly applicable and can be leveraged by any language, and identifies both store-and-forward and publish-and-subscribe semantics in one specification.
+
+5. Open
+
+    Vender and platform agnostic, and created by users and technology providers working in collaboration.
+
+6. Safe
+
+    A secure solution to the problem of transporting value-breaing messages across and between organizations, technology platorms and a virtual cloud computing environment.

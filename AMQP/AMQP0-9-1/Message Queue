@@ -1,0 +1,17 @@
+Message Queue stores messages in memory or disk, and delivers these in sequence to one or more consumer applications. 
+Message Queues are message storage and distribution entities. Each message queue is entirely independent and is a reasonably clever object.
+
+A Message Queue has various properties:
+    - private / shared
+    - durable / temporary
+    - client-named / server-named
+
+By selecting the desired properties we can use a message queue to implement conventional middleware entities such as:
+    
+    - A shared store-and-forward queue, which holds messages and distributes these between consumers on a round-robin basis. Store and forward queues are typically durable and shared between multiple consumers.
+
+    - A private reply queue, which holds messages and forwards these to a single consumer. Reply queues are typically temporary, server-named, and private to one consumer.
+
+    - A private subscription queue, which holds messages collected from various "subscribed" sources, and forwards these to a single consumer.
+
+These are not formally defined in AMQP: they are examples of how message queues can be used.

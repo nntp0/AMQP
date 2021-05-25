@@ -1,0 +1,5 @@
+The value of using message brokers is that a trusted intermediary designed for the purpose handles the complexities of message queuing, routing and delivery. That intermediary is the message broker.
+
+AMQP defines the minimum set of requirements expected of a message broker, and where there are frequently used more advanced facilities; it specifies how those facilities are to be exposed to clients.
+
+The goal of AMQP is to enable applications to send messages via the broker services; these lower level concepts are necessary but not the goal in themselves. When you send a message via a courier, you don't drive the delivery truck yourself.

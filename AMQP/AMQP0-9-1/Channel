@@ -1,0 +1,13 @@
+AMQP is a multi-channelled protocol. Channels provide a way to multiplex a heavyweight TCP/IP connection into severral light weight connections.
+
+Channels are independent of each other nd can perform different functions simultaneously with other channels, the available bandwidth being shared between the concurrent activities.
+
+It is expected and encouraged that multi-threaded client applications may often use a "channel-per-thread" model as a programming convenience. However, opening several connections  to one or mote AMQP servers from a single client is also entirely acceptable. The channel life-cycle is this:
+
+    - The client opens a new channel (Open).
+    - The server confirms that the new channel is ready (Open-Ok).
+
+    - The client and server use the channel as desired.
+
+    - One peer (client or server) closes the channel (Close).
+    - The other peer hand-shakes the channel close (Close-Ok).

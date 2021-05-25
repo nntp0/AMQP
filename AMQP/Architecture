@@ -1,0 +1,30 @@
+Three major pieces, AMQP 1.0
+    Networking protocol
+
+Transport (TCP/IP):
+    - Reliable, ordered byte transmission, and network flow control Subdivision of TCP/IP into channels
+    
+Messageing Protocol & Type System
+    - Portable Representation of Message Properties
+    - Transport of Messages between Transport Peers
+    - Transfer of Responsibility for Messages between Peers
+    - FlowControl of Messages
+
+Message Broker - the MOM Layer
+    - Intermediation, Temporal Separation of Messaging Application
+    - Safe Storage of Messages
+    - Transactional Resources
+    - Local "Addresses"
+    - Message Distribution features; Shared Queues, Topics, etc.
+    - Reply Queues
+
+API Mappings
+    - Canonical representation of cencepts between API's
+    - Send JMS <> WCF <> C <> Python
+
+Routing between Brokers
+    - Political Separation of Messaging Applications
+    - Message Forwarding
+    - Address Forward/Reverse Translation
+    - Subscription Propagation
+

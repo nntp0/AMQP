@@ -1,0 +1,14 @@
+The AMQP commands are grouped into classes. Each class covers a specific functional domain. Some classes are optional - each peer implements the classes it needs to support.
+
+There are two distinct method dialogues:
+    - Synchronous request-response
+        in which one peer sends a request and the other peer sends a reply.
+        Synchronous request and response methods are used for functionality that is not performance critical.
+
+    - Asynchronous notification
+        in which one peer sends a method but expects no reply.
+        Asynchronous methods are used where performance is critical.
+
+    To make method processing simple, we define distinct replies for each synchronous request. That is, no method is used as the reply for two different request. This menas that a peer, sending a synchronous request, can accept and process incoming methods until getting one of the valid synchronous replies.
+
+    A method is formally defined as a synchronous request, a synchronous reply, or asynchronous. Lastly, each method is formally defined as being client-side (server to client), or server-side (client to server).

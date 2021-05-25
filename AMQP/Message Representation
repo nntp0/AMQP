@@ -1,0 +1,5 @@
+https://www.amqp.org/product/architecture
+
+AMQP provides portability between systems. It therefore needs a way to represent business data that may be required to route and deliver the message in a portable way accessible from many programming languages.
+
+Normally, this encoding is only used to add routing properties to the "encelope" of the message; the contents inside the envelope are transported untouched. Applications will likely use XML, JSON or similar encodings in their message content too, but this is entirely optional.

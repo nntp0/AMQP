@@ -1,0 +1,9 @@
+To enable complete interoperability for messaging middleware requires that both networking protocol and the semantics of the server-side services are sufficiently specified.
+
+AMQP, therefore, defines both the network protocol and the server-side services through:
+    - A defined set of messaging capabilities
+        called the "Advanced Message Queuing Protocol Model"
+        The AMQ model consists of a set of components that route and store messages within the broker service, plus a set of rules for wiriing these components together.
+    - A network wire-level protocol, AMQP, that lets client applications talk to the server and interact with the AMQ model it implements.
+
+    One can partially imply the semantics of the server from the AMQP protocol specifications but we believe that an explicit description of these semantics helps the understanding of the protocol.

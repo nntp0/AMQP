@@ -1,0 +1,9 @@
+We have designed AMQP to be mappable to a middleware API. This mapping has some intelligence but it is also mechanical.
+
+The advantages of this are having learnt the AMQP semantics, developers will find the same semantics provide in whatever environment they use.
+
+For example, here is a Queue.Declare method example:
+    Queue.Declare
+        queue = my.queue
+        auto-delete = TRUE
+        exclusive = FALSE

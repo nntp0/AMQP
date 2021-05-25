@@ -1,0 +1,6 @@
+An exchange examines a message's properties, its header fields, and its body content, and using this and possibly data from other sources, decides how to route the message.
+
+In the majority of simple cases the exchange exmines a single key field, which we call the "routing key". The routing key is a virtual address that the exchange may use to decide how to route the message.
+
+To route between AMQP servers owned by different entities, one set up explicit briges, where one AMQP server acts and the client of another server for the purpose of transferring messages between those separate entities. This way of working tends to suit the type of businesses where AMQP is expected to be used, because these bridges are likely to be underpinned by business processes, contractual obligations and security concerns.
+

@@ -1,0 +1,22 @@
+Message Queue Properties
+
+    When a client application creates a message queue, it can select some important properties:
+        
+        - name
+            if left unspecified, the server chooses a name and provides this to the client. Generally, when applications share a message queue they agree on a message queue name beforehand, and when an application needs a message queue for its own purposes, it lets the server provide a name.
+        - exclusive
+            if set, the queue belongs to the current connection only, and is deleted when the connection closes.
+        - durable
+            if set, the message queue remains present and active when the server restarts. It may lose transient messages if the server restarts.
+    
+Queue Life-cycles
+
+    - Durable message queues
+        that are shared by many consumers and have an independent existence
+        i.e. they will continue to exist and collect messages whether or not there are consumers to receive them.
+
+    - Temporary message queues
+        that are private to one consumer and are tied to that consumer. When the consumer disconnects, the message queue is deleted.
+
+    - Shared message queues
+        that are deleted when the last of many consumers disconnects.

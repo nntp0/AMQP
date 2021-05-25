@@ -1,0 +1,15 @@
+Types of Exchange
+
+    Each exchange type implements a specific routing algorithm.
+    There are a number of standard exchange types, explained in the "Functional Specifications" chapter, but there are two that are particularly important:
+
+        The direct exchange type, which routes on a routing key. The defualt exchange is a direct exchange.
+        The topic exchnage type, which routes on a routing pattern.
+
+Exchange Life-cycle
+
+    Each AMQP server pre-creates a number of exchanges (instances). These exchanges exist when the server starts and cannot be destroyed. AMQP applications can also create their own exchanges.
+    
+    AMQP does not use a "create" method as such, it uses an assertive "declare" method which means, "create if not present, otherwise continue".
+
+    It is plausible that applications will create exchanges for private use and destroy them when their work is finished. AMQP provides a method to destroy exchanges but in general applications do not do this.

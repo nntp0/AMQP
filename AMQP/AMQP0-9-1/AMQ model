@@ -1,0 +1,17 @@
+We define the server's semantics explicitly, since interoperability demands that these be the same in any given server implementation.
+
+AMQ model has three main types of component, which are connected into processing chains in the server to create the desired functionality:
+    
+    - The "exchange" receives messages from publisher applications and routes these to "message queues", based on arbitrary criteria, usually message proeprties or content.
+
+    - The "message queue" stores messages until they can be safely processed by a consuming client application (or multiple applications)
+
+    - The "binding" defines the relationship between a message queue and an exchange and provides the message routing criteria.
+
+Using this model we can emulate the classic message-oriented middleware concepts of store-and-forward queues and topic subscriptions trivially. We can also expresses less trivial concepts such as content-based routing, workload distribution, and on-demand message queues.
+
+In very gross term, an AMQP server is analoguous to an email server, with each excahnge acting as a message transfer agent, and each message queue as a mailbox. The bindings define the routing tables in each transfer agent. Publishers send messages to individual transfer agent, which then route the messages into mailboxs.
+
+# pre-AMQP middleware system, publishers send messages directly to individual mailboxes.
+
+The difference is that when the rules connecting message queues to exchanges are under control of the architect, it becomes possible to do interesting things, such as define a rule that says, "place a copy of all messages containing such-and-such a header into this message queue".

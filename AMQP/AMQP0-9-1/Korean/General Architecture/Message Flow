@@ -1,0 +1,32 @@
+Message 기본적인 흐름
+
+    - AMQP server 는 Producer application 으로 부터 Message 를 Exchange 를 향해 받습니다. Exchange 는 Message 를 특정 조건 Binding 에 따라 Message Queue 에 할당합니다. Message Queue 는 Message 를 받아, Consumer application 에 전송하거나 불가능하다면 일단 Message 를 저장합니다.
+
+Message Life-cycle
+
+    - AMQP 의 Message 는 여러 properties 와 content 로 구성됩니다.
+    - Message 는 Producer application 이 AMQP Client API 를 이용해 생성합니다.
+    - Message 는 content 에 보내고자하는 내용을 담고, message 의 properties 를 설정합니다.
+    - Message 를 routing information 으로 label 한 후, 서버의 exchange 로 전송합니다.
+
+    - Message 가 server 에 도달하면, exchange 가 해당 message 를 routing information 에 기반해서 특정 message queue (여러개일 수 있음) 로 할당합니다. 만약 routing 을 할 수 없다면, drop 하거나 Producer application 으로 return 합니다.
+
+    - 한 개의 Message 는 여러 Message Queue 에 존재할 수 있습니다.
+    - Message Queue 에 도달한 Message 는 곧 바로, consumer application 에 전송 시도됩니다. 하지만, 만약 불가능하다면, Message Queue 는 해당 message 를 일단 저장합니다. Consumer application 이 존재하지 않는다면, 해당 사실을 Producer application 에 알릴 수 있습니다.
+
+    - Message Queue 가 Message 를 Consumer application 에 전송했다면, 설정에 따라 ACK 를 기다리고나서 수신한 후 삭제하거나, 곧 바로 Message 를 삭제할 수 있습니다.
+
+    - Producer 가 Message 를 생성하고, Consumer 가 ACK 를 전송하는 것까지의 과정을 Transaction 으로 묶을 수 있습니다. 이를 묶는다면, 하나의 Transaction 의 성공여부에 따라, 실패시 모든 것을 RollBack 하는 과정이 있을 수 있습니다.
+
+Application 의 입장에서 본 AMQP
+
+    Producer
+        - AMQ model 의 Message Queue 에 직접적으로 Message 를 전송하지 않습니다. 대신 Message 를 Routing information 에 근거해 전달해 줄 Exchange 에 전달합니다.
+    Consumer
+        - 수신받을 Message Queue 에 Message 가 도달했으면 해당 Message 를 수신합니다.
+    
+    공통
+        - Message Queue 를 생성하거나 파괴할 수 있습니다.
+        - 어떤 message 를 수신할 것인지 정의할 수 있습니다. (binding)
+        - 어떤 Exchange 를 향해 전송할 것인지 결정할 수 있습니다.
+        

@@ -7,3 +7,6 @@ JMS (Java Message Service)
 
 WCF (Windows Communication Foundation)
     A framework for building service-oriented application. Using WCF, you can send data as asynchronous messages from one service endpoint to another.
+
+Binary Protocol
+    A communication Protocol which utilizes all values of a byte, as opposed to text-based protocol which only uses values corresponding to human-readable characters in ASCII encoding.

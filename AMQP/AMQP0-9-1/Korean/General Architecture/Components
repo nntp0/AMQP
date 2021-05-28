@@ -1,0 +1,27 @@
+The Message queue
+
+    - Message queue 는 message 를 메모리나 디스크에 저장하고, message를 하나 또는 여러 consumer 에게 전송합니다.
+    - Message queue 는 message 를 저장하고, 분배하는 개체입니다.
+    - 모든 message queue 는 독립적입니다.
+    - Message Queue 의 properties:
+        1. private or shared
+        2. durable or temporary
+        3. client-named or server-named
+
+The Exchange
+
+    - Message 를 Producer 로 부터 받아, message 를 특정 criteria 에 따라 Message Queue 로 전달합니다. 이 때, 쓰이는 criteria 가 bindings 입니다.
+    - message 를 확인하고 binding table 에 근거해서, 해당 message 를 어떤 message queue 또는 exchange 에 보낼 것인지 결정합니다.
+    - Exchange 는 Message 를 저장하지 않습니다.
+
+    - Exchange 는 단순히 routing 말고도 여러 역할을 할 수 있습니다. Message 를 수신하는 것 외에도 필요하다면 Message 를 생성할 수 있습니다.
+
+The Routing Key
+
+    - Exchange 가 Routing 할 때, Message 가 어떤 조건을 가지고 있는지 파악하는 Key 입니다.
+    - Header field 일 수도 있고, body content 일 수도 있고, routing key 자체 일 수도 있고, 가능하다면 message 외부의 요소에 따라서 결정할 수도 있습니다.
+
+    - 일반적으로는, message 의 key field (routing key) 를 검사합니다.
+        1. p2p 연결에서는 routing key 가 message queue 의 명칭
+        2. topic pub-sub 연결에서는 routing key 가 topic hierarchy 입니다.
+

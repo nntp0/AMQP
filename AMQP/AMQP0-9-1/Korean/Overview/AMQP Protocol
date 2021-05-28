@@ -1,0 +1,11 @@
+AMQP Protocol?
+    
+    - Binary Protocol
+    - 크게 2가지 Layer 로 구분한다.
+        
+        1. Functional Layer
+            Application 이 동작하는 데, 요구되는 주요 기능을 논리적으로 구분지어놓은 명령어 모음을 정의
+        2. Transport Layer
+            Application 이 Server 와 통신을 주고 받을 때, channel 을 다루는 방식, 인코딩 방식, Framing, Data representation, Error Handling 등을 정의
+
+            

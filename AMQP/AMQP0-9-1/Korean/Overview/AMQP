@@ -1,0 +1,32 @@
+AMQP 란 무엇일까?
+
+    - Message 를 전달해주는 MiddleWare Server 를 정의한 프로토콜
+    - Client 들이 해당 MiddleWare 에 접속하면, Client 간 메세지를 주고 받을 수 있도록 설계
+    - Client 가 어떤 운영체제든 어떤 언어로 쓰여졌든 메세지를 주고 받을 수 있도록 (Interoperability) 정의해놓은 프로트콜
+
+AMQP 가 정의하는 내용
+
+    Interoperability 를 보장하려면, Server 가 정확히 어떤 서비스를 제공해야하는지, 어떤 식으로 연결되어야하는 지 등을 정의해야한다.
+
+    - 메세지 운용체계: Advanced Message Queueing Protocol 모델 (AMQ Model) 은 수신받은 메세지를 어떤 식으로 목적지로 Routing 하고 Server 보관하는 방식 등을 정의
+    - 통신 연결 프로토콜: Client 들이 어떤 식으로 Server 와 통신을 주고받아야하는 지와 어떤식으로 AMQ Model 를 다뤄야하는 지 등을 정의
+
+AMQ Model
+
+    Interoperability 를 보장하려면, 서버는 어떤 운영체제에서 어떤 언어로 쓰였든 정확히 동일한 기능을 보장해야한다.
+    따라서, 모델은 메세지 운용체계에 쓰이는 요소들과 이들을 어떤 식으로 활용해야하는지 등을 정의해두었다.
+
+    대표적인 3가지 요소
+
+    - Exchange: Client 로부터 받은 메세지를 어떻게 Routing 할 것인지 결정하는 요소
+    - Message Queue: message 가 목표 client 에 안전하게 도착할 때까지 보관 및 전송 하는 요소
+    - Binding: Message Queue 와 Exchange 간 연결 방식을 결정하는 기준
+
+    Binding 이라는 요소가 새로이 등장하면서, AMQP 가 기존 MQ middleware system 이 메세지를 수신해 넘길 Message Queue 를 선정하는 방식이 경직되어있었던 반면, 유연한 연결을 만들 수 있습니다.
+
+    AMQP 는 다음의 요구사항을 충족합니다.
+
+    - 기존의 messaging 제품들이 제공하는 기능들을 제공할 수 있어야합니다.
+    - Performace 수준이 뒤떨어져선 안됩니다.
+    - Protocol 을 이용해 Application 이 서버의 요소를 Control 할 수 있어야합니다.
+    - 유연하고 확장성있지만, 단순해야합니다.

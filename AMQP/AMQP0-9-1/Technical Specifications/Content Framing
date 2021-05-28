@@ -1,0 +1,12 @@
+Certain speicific methods (Public, Deliver, etc.) carry content.
+
+Methods that carry content do so unconditionally.
+
+Content consists of a list of 1 or more frames as follows:
+
+    1. Excatly one content header frame that provides properties for the content.
+    2. Optionally, one or more content body frames.
+
+Content frames on a specific channel are strictly sequential. That is, they may be mixed with frames for other channels, but no two content frames from the same channel may be mixed or overlapped, nor may content frames for a single content be mixed with methods frames on the same channel.
+
+Note that any non-content frame explicitly marks the end of the content. Although the size of the content is well-known from the content header, this allows for a sender to abort the sending of content without the need to close the channel.

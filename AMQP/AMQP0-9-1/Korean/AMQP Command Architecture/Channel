@@ -1,0 +1,11 @@
+Multi Channelled Protocol
+
+    - 단일 Connection 에서 내부에 여러개의 논리적 분할을 갖는 개체입니다. 흔한 인터넷 랜선을 생각하면 될 것 같습니다. 물리적으로는 랜선 하나만 연결되어 있지만, 내부적으로 여러 프로그램들이 독자적으로 다른 개체와 통신하는 것과 같은 개념입니다.
+    - Multi thread Application 에 유용한 개념입니다. Channel 별로 하나의 Thread 가 할당되는 방식이 사용될 수 있습니다. 물론, Channel 단위가 아니라, Connection 자체가 여러개 있는 방식도 있을 수 있습니다.
+
+Channel Life Cycle
+    - Client 가 Channel Open 요청합니다. (Open)
+    - Server 가 해당사항을 받아들이고 새로운 채널이 만들어 졌음을 reply 합니다. (Open-Ok)
+    - Client 와 Server 는 channel 을 자유롭게 사용합니다.
+    - 한 peer 가 Channel Close 를 요청합니다. (Close)
+    - 다른 peer 가 Channel Close 를 hand-shakes 로 받아들입니다. (Close-Ok)

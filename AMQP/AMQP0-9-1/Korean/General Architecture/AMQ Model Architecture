@@ -1,0 +1,16 @@
+서버가 Interoperability 를 제공하기 위해, 반드시 따라야하는 구조를 정의합니다.
+
+Message Middleware 의 역할
+    
+    Message 를 수신하며, 해당 message 를 특정 기준에 따라 consumer 에 전달합니다. 만약 전달이 불가능하다면, message 를 보관해 두었다가 가능할 때 전달합니다.
+
+    기존의 Message Middleware 는 보통 위의 작업을 하나의 엔진을 이용해 처리했습니다. 반면 AMQ Model 은 2가지 sub module 로 나누어 처리합니다.
+
+    - The exchange
+        message 를 Producer 로부터 수신받아, message queue 로 저장합니다. (라우팅 역할)
+    - The message queue
+        message 를 Consumer 로 전송합니다. 불가능하다면, 일단 저장합니다.
+
+    위의 두 Module 간 연결하는 interface 는 바로 "binding" 이라는 요소입니다.
+
+    따라서, AMQ Model 은 크게 3가지 요소가 존재하며, 이는 Pre-Runtime 에서 정의되어야하는 내용이 아닌, Runtime 에서 Application 의 요청에 따라 생성될 수 있습니다.

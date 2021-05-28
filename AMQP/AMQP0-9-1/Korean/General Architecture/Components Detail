@@ -1,0 +1,70 @@
+Exchanges
+
+    - Exchange 의 Type
+        Type 에 따라 Message 를 어떤 Routing Info 를 근거로 Message 를 어떻게 Message Queue 에 할당할 것인지 결정합니다. 다양한 Type 이 존재하지만, 대표적으로 다음 2가지가 사용됩니다.
+
+        1. Direct: routing key 에 1대1 대응되는 Message Queue 에 할당합니다.
+        2. Topic: routing key 에 해당하는 pattern 을 가진 Message Queue 에 할당합니다.
+
+    - Exchange Life-cycle
+        AMQP server 가 생성되고 default 로 생성되는 Exchange 가 있습니다. 이 Exchange 들은 서버가 종료될 때까지 파괴되지 않고 존재합니다.
+        또, Application 이 직접 생성한 Exchange 가 존재합니다. 해당 Exchange 는 declare 되고 원하면 파괴될 수 있습니다.
+
+Message Queues
+
+    - Message Queue Properties
+        1. name: Message Queue 의 이름은 중요한 Property 입니다. 만약 Message Queue 의 이름을 Application 이 짓지 않는다면, server 가 할당합니다.
+        2. exclusive: 이 Message Queue 를 공유할 것인지 아닌지를 결정하는 Property 입니다.
+        3. durable: Server 가 다운되고 재시작될 때, 해당 Message Queue 를 유지할 것인지 결정하는 Property 입니다. 
+        유의 할 점은, Message Queue 는 존재하더라도, Message 자체의 속성이 transient 하다면 파괴되어 없어집니다.
+
+    - Queue Life-cycle
+        1. Durable message queue 는 많은 consumer application 에 의해 공유 될 수 있으며, consumer 가 있든 없든 message 를 할당받아 보관할 수 있습니다.
+        2. Temporary message queue 는 하나의 consumer application 에 할당되어 message 를 해당 application 에만 전송하고 application 종료시에 같이 파괴됩니다.
+
+Bindings
+
+    Exchange 가 어떤 Message Queue 에 Message 를 할당해야하는 지 정의하는 요소입니다.
+    
+    Pseudo-code 로 정의되는 형태는 다음과 같습니다.
+        Queue.Bind <queue> To <exchange> WHERE <condition>
+
+Examples
+
+    - Shared Queue
+        1. 여러 Consumer application 에서 하나의 Queue 를 Declare 한다.
+        Queue.Declare
+            queue = app.svc01
+        2. 여러 Consumer application 에서 하나의 Queue 를 Consume 하겠다고 등록한다.
+        Basic.Consume
+            queue = app.svc01
+        3. Producer Application 도 해당 Queue 를 선언하고, 해당 Queue 에 Publish 한다.
+        Basic.Publish
+            routing-key = app.svc01
+
+    - Reply Queue
+        * 유용하지 않은 것 같다.
+        1. Reply Queue 보통 서버가 이름을 지정하는 임시 Queue 를 활용합니다.
+        Queue.Declare
+            queue = <empty>
+            exclusive = TRUE
+        S:Queue.Declare-Ok
+            queue=tmp.1
+        
+        2. reply queue 에 publish 하려면, default exchange 를 활용합니다.
+        Basic.Publish
+            exchange=<empty>
+            routing-key=tmp.1
+
+    - Pub-Sub Subscription Queue
+        1. Consumer Application 을 위한 임의의 Exclusive Queue 를 생성합니다.
+        Queue.Declare
+            queue = <empty>
+            exclusive = TRUE
+        S:Queue.Declare-Ok
+            queue = tmp.2
+        2. 해당 Queue 를 원하는 topic 에 연결한다.
+        Queue.Bind
+            queue=tmp2
+            TO exchange=amq.topic
+            WHERE routing-key = STOCK.USD.*

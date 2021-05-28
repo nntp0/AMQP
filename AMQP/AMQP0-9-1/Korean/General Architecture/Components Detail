@@ -68,3 +68,10 @@ Examples
             queue=tmp2
             TO exchange=amq.topic
             WHERE routing-key = STOCK.USD.*
+        3. 해당 Queue 를 이용하려면 잊지말고, Consume 을 호출한다.
+        Basic.Consume
+            queue=tmp.2
+        4. Producer 는 amq.topic 으로 routing-key 를 싣어 보낸다.
+        Basic.Publish
+            exchange=amq.topic
+            routing-key=STOCK.USD.ACME

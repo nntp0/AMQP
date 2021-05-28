@@ -1,0 +1,13 @@
+Middleware 의 복잡성?
+    일반적으로 Middleware 로 제공되는 대부분의 Product 는 까다로운 활용조건을 학습하는 데 있어서 배우는 것이 난감하다.
+    AMQP 는 이를 해결하기 위해, 유사한 기능을 갖는 그룹으로 나눈 Class 와 해당하는 Class 에 속하는 Method 를 정확히 한가지 역할만 하도록 정의한다.
+    결과적으로, 수많은 Method 들이 나오지만, 기능을 이해하는 데 있어서 쉬운 결과를 갖습니다.
+
+2 가지 통신방식
+
+    1. Synchronous request-response
+        One peer 가 request 를 send 하면, One peer 가 response 를 하는 방식입니다. request 에 대한 response 가 올 때까지 Application 이 대기하는 방식입니다. Performance 가 중요치 않을 때 쓰이는 방법입니다.
+    2. Asynchronous notification
+        One peer 가 요청을 보내고 다른 peer 가 reply 를 보냅니다. 하지만, 그 reply 가 올 때까지 대기하는 것이 아니라, 다른 작업을 수행하고 있는 방식입니다. Performance 가 중요할 때 쓰이는 방법입니다.
+
+    중요한 점은, Synchronous request method 에 대해, 그에 대응하는 Synchronous reply method 가 1대1로 정의되어 있습니다. Asynchronous 또한 마찬가지입니다. 한 Synchronous reply method 가 여러 Synchronous request 를 처리할 수 없습니다.

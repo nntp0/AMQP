@@ -1,0 +1,16 @@
+Connection Life Cycle
+    - Client 가 Server 에 TCP/IP connection 을 열면서 Protocol header 를 전송합니다. Client 가 method 형태로 formatting 하지 않고 보내는 Data 입니다.
+    - Server 는 Protocol version 과 다른 properties 정보 (보안 등)를 담아서 Reply 합니다. (The Start Method)
+    - Client 보안 정책을 선택합니다. (Start-Ok)
+    - Server 는 Authentication 을 수행합니다. 연결 가능한 존재인지 판단합니다. 문제를 제시하는 방식을 활용합니다. (Secure)
+    - Client 는 문제에 대한 답변을 Reply 합니다. (Secure-Ok)
+    - Server 는 맞출 때까지 문제를 계속 질문하다가, negotiation 단계로 넘어가 프로토콜에 쓰이는 요소들을 조정합니다. (Tune).
+    - Client 는 해당 요소들을 받아들이거나 조정합니다 (Tune-Ok).
+    - Client 는 공식적으로 Connection 이 열렸음을 설정하고 virtual host 를 선택합니다. (Open)
+    - Server 는 해당 virtual host 가 유효한지 판단합니다. (Open-Ok).
+    - Client 는 Connection 을 자유롭게 활용합니다.
+    - One peer 가 connection 을 종료 요청할 수 있습니다. (Close)
+    - 다른 peer 가 hand-shake 절차를 거칩니다. (Close-Ok)
+    - Connection 을 종료합니다.
+
+    만약 error 가 발생하면, no hand-shaking 절차가 진행됩니다. 만약 위의 과정 중, 메소드 상 문제가 발생하면, 추가적인 메세지를 전송하는 것이 아니라 바로 Close 해야합니다.

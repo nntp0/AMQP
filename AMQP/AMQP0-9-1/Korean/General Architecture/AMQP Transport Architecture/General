@@ -1,0 +1,17 @@
+    - AMQP 는 Bianry Protocol 입니다.
+    
+    - 전달하고자 하는 정보는 다양한 Type 의 Frame 으로 재구성됩니다.
+    - Frame 은 Protocol 의 method 와 다른 정보들을 전달할 수 있습니다.
+    
+    - 모든 Frame 은 공통적인 Format 을 갖습니다.
+        1. Frame Header
+        2. Payload
+        3. Frame End
+    - Payload 는 Frame Type 에 따라 결정됩니다.
+    
+    - Peer 간에는 신뢰가능한 Stream-Oriented network transport layer 를 통해 연결됩니다. (TCP/IP)
+    - 만약 해당 연결이 Socket 기반 Connection 이라면, 그 Connection 내에는 여러 독립적인 Thread of control 이 존재할 수 있습니다. (Channels)
+    - 각 Frame 들은 Channel number 로 어느 Channel 로 보낼 것인지 결정됩니다.
+    - 다른 Channel 로 향하는 Frame 이더라도 Connection 은 공유합니다.
+    - Frame 자체는 단순합니다. 따라서, Pasing 에 있어서 오버헤드가 발생하지 않습니다.
+    - Wire-level 의 formatting 은 확장가능하며 일반적이도록 설계됐습니다. 이는, 상위 Layer 가 AMQP 가 아니더라도 활용가능하도록 목표되었습니다.

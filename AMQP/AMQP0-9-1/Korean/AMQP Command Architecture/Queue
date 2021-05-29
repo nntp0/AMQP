@@ -1,0 +1,25 @@
+Queue Class
+    Application 이 Server 의 Queue 를 관리하게 합니다. 모든 Message 를 소비하는 모든 Client 가 기본적으로 이용하는 Class 입니다.
+
+Queue Life-Cycle
+    
+    Durable Message Queue 
+
+        - Client 는 Message Queue 를 선언합니다. (없으면 생성) (Declare)
+        - Server 는 해당 Message Queue 가 있음을 Confirm 합니다. (Declare-Ok)
+        - Client 가 Message Queue 에서 Message 를 읽습니다.
+
+    Temporary Message Queue
+
+        - Client 는 Message Queue 를 선언합니다. (Declare, 일반적으로 이름 Property 를 비워둠으로 서버가 선정하도록 합니다.)
+        - Server 는 Confirm 합니다. (Declare-Ok)
+        - Client 가 Message Queue 의 Message 를 Consume 합니다. 정확한 Consumer 의 동작방식은 Basic class 에 의해 결정됩니다.
+        - Client 가 Consuming 작업을 종료합니다. Channel 을 종료하는 방법 등을 활용할 수 있습니다.
+        - Message Queue 에 대한 마지막 Consumer 가 사라졌을 때, Time-out 을 거친 후, 서버는 해당 Message Queue 를 삭제합니다.
+    
+    Subscription Message Queue
+
+        - Client 는 Message Queue 를 선언합니다. (Declare)
+        - Server 는 Confirm 합니다. (Declare-Ok)
+        - Client 가 Message Queue 를 특정 topic exchange 에 bind 합니다. (Bind)
+        - Server 는 Confirm 합니다. (Bind-Ok)

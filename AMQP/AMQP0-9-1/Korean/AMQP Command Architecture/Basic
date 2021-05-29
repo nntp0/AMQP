@@ -1,0 +1,9 @@
+Class Description
+    
+    Basic Class 는 기본적인 Message 가 하는 기능들을 정의합니다.
+
+    - Client 에서 Server 로 비동기적으로 전송합니다. (Publish)
+    - Consumer client 가 Message Queue 에서 Message 를 받아갑니다. (Consume, Cancel)
+    - Server 에서 Client 로 Message 를 비동기적으로 전송합니다. (Deliver, Return)
+    - Message 에 대해 Confirmation 을 수행합니다. (Ack, Reject)
+    - Client 가 Message 를 Message Queue 에서 동기적으로 얻어갑니다. (Get)

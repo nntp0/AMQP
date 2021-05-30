@@ -1,0 +1,8 @@
+Objective of Negotiation
+
+    Negotiation 은 중요한 기능입니다. Server 와 Client 가 통신할 때, 사용할 프로토콜의 Version 과 사용할 데이터의 크기 등 여러 요소들을 효과적으로 조율할 수 있는 기법입니다.
+
+    - AMQP Client 와 Server 는 Protocol 의 세부 요소 크기에 대해 Negotiation 할 수 있습니다.
+
+    - Client 가 Server 에 연결될 때, 특정 Option 을 제시하면, Client 가 그를 수락하거나 혹은 수정해서 다시 제안할 수 있어야합니다.
+

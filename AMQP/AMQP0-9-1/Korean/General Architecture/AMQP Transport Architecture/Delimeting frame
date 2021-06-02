@@ -1,0 +1,5 @@
+Peer 간 통신은 Frame 단위로 이루어집니다. 
+
+하지만, TCP 통신은 streaming 기반 통신입니다. 즉, 모든 프레임을 한번에 연결해서 stream 형태로 송신하기때문에 frame 을 구분할 필요가 있습니다. 
+
+AMQP 에서 채택한 delimeting 방식은 프레임을 header payload end 로 구성하고, header 에 size 정보를 담아서 보내는 방식을 채택했습니다.
